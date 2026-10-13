@@ -25,7 +25,7 @@ A featherweight (~16 MB RAM) macOS menu bar system resource monitor written in p
 ## Installation
 
 ### Option 1: Download Prebuilt DMG
-1. Download `FeatherStat.dmg` from the [Releases](https://github.com) page.
+1. Download `FeatherStat.dmg` from the [Releases](https://github.com/chhay-lay-169/FeatherStat/releases) page.
 2. Open the DMG and drag **FeatherStat** to your `/Applications` folder.
 3. Launch FeatherStat.
 
@@ -46,7 +46,7 @@ A featherweight (~16 MB RAM) macOS menu bar system resource monitor written in p
 
 #### Build
 ```bash
-git clone https://github.com/<your-username>/FeatherStat.git
+git clone https://github.com/chhay-lay-169/FeatherStat.git
 cd FeatherStat
 ./build.sh
 ```
