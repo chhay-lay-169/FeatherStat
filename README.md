@@ -6,6 +6,10 @@ A featherweight (~16 MB RAM) macOS menu bar system resource monitor written in p
 ![Swift](https://img.shields.io/badge/Swift-5.9%2B-orange)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
+<p align="center">
+  <img src="assets/FeatherStatScreenshot.jpg" alt="FeatherStat Menu Bar Preview" width="800" />
+</p>
+
 ---
 
 ## Features
