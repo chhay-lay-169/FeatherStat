@@ -1,9 +1,9 @@
-# TinyStats
+# FeatherStat
 
-A hyper-lightweight (~16 MB RAM) macOS menu bar hardware monitor.
+A featherweight (~16 MB RAM) macOS menu bar resource monitor.
 
 ## Features
-- Minimal RAM footprint: Direct kernel host_statistics64, sysctl, and IOKit calls.
+- Ultra-low RAM footprint: Direct kernel host_statistics64, sysctl, and IOKit calls.
 - Modules: RAM, Network I/O, CPU, and GPU.
 - Refresh rates: 1s, 2s, 3s.
 
