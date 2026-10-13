@@ -184,7 +184,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         for ptr in sequence(first: first, next: { $0.pointee.ifa_next }) {
             let ifa = ptr.pointee
             let name = String(cString: ifa.ifa_name)
-            if name.hasPrefix("en") && (ifa.ifa_flags & UInt32(IFF_UP)) != 0 && (ifa.ifa_flags & UInt32(IFF_RUNNING)) != 0 {
+            if name.hasPrefix("en") &&
+               ifa.ifa_addr?.pointee.sa_family == UInt8(AF_LINK) &&
+               (ifa.ifa_flags & UInt32(IFF_UP)) != 0 &&
+               (ifa.ifa_flags & UInt32(IFF_RUNNING)) != 0 {
                 if let data = ifa.ifa_data {
                     let networkData = data.assumingMemoryBound(to: if_data.self).pointee
                     curRx += UInt64(networkData.ifi_ibytes)
@@ -249,18 +252,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         var service = IOIteratorNext(iterator)
         while service != 0 {
+            var foundUtil: Int? = nil
             var props: Unmanaged<CFMutableDictionary>?
             if IORegistryEntryCreateCFProperties(service, &props, kCFAllocatorDefault, 0) == kIOReturnSuccess,
                let dict = props?.takeRetainedValue() as? [String: Any],
                let perf = dict["PerformanceStatistics"] as? [String: Any] {
-                IOObjectRelease(service)
                 if let util = perf["Device Utilization %"] as? Int {
-                    return util
+                    foundUtil = util
                 } else if let util = perf["GPU Activity(%)"] as? Int {
-                    return util
+                    foundUtil = util
                 }
             }
             IOObjectRelease(service)
+            if let util = foundUtil {
+                return util
+            }
             service = IOIteratorNext(iterator)
         }
         return 0

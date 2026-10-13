@@ -2,3 +2,15 @@
 build/
 *.app
 *.dmg
+
+# Swift & Xcode
+.build/
+*.swp
+*~
+*.xcuserdatad
+xcuserdata/
+DerivedData/
+
+# Editors
+.vscode/
+.idea/
